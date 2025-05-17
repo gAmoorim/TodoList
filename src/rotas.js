@@ -16,9 +16,7 @@ rotas.use(auth)
 rotas.get('/usuario', obterUsuario)
 rotas.put('/usuario', atualizarUsuario)
 
-//arrumar essa rota
 rotas.delete('/usuario', deletarUsuario)
-
 rotas.post('/tarefas', criarTarefa)
 rotas.get('/tarefas', listarTarefas)
 
