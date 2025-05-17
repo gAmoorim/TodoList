@@ -10,7 +10,7 @@ CREATE TABLE usuarios (
 
 create table tarefas (
   id serial primary key,
-	titulo VARCHAR(255),
+  titulo VARCHAR(255),
   descricao TEXT,
   data_vencimento TIMESTAMP,
   prioridade VARCHAR(200),   --('baixa', 'média', 'alta')
