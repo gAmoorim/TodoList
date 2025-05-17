@@ -90,11 +90,7 @@ const atualizarUsuario = async (req, res) => {
 const deletarUsuario = async (req,res) => {
     try {
         const {id} = req.usuario
-        const usuarioDeletado = await queryDeletarUsuario(id)
-
-        //NOME DO USUARIO NAO ESTA SENDO RETORNADO
-
-        return res.status(200).json({mensagem: `Usuario ${usuarioDeletado.nome} deletado com sucesso.`})
+        return res.status(200).json({mensagem:" Usuário deletado com sucesso. "})
     } catch (error) {
         return res.status(500).json({ mensagem: `Erro ao deletar o usuário: ${error.message}`})
     }
