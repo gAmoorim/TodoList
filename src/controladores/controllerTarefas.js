@@ -9,8 +9,6 @@ const criarTarefa = async (req,res) => {
 
     const {id} = req.usuario
 
-    // PENSAR SE PODE EXISTIR CAMPO REPETIDO
-
     try {
         const novaTarefa = {
             titulo,
