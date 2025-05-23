@@ -9,24 +9,27 @@ const queryTarefas = async (id) => {
    .where({user_id: id})
 }
 
-const queryTarefaEspecifica = async (id) => {
-    return await knex('tarefas').where({id})
+const queryTarefaEspecifica = async (id, user_id) => {
+    return await knex('tarefas').where({ id, user_id }).first()
 }
 
-const queryBuscarTarefa = async (id) => {
-    return await knex('tarefas').where({id})
-}
-
-const queryAtualizarTarefa = async (camposAtualizados) => {
-    return await knex('tarefas')
-    .where({id})
-    .update({camposAtualizados})
-}
-
-const queryDeletarTarefa = async (id) => {
-    return await knex('tarefas')
-    .where({id})
+const queryBuscarTarefa = async (id, user_id) => {
+  return await knex('tarefas')
+    .where({ id, user_id })
     .first()
+}
+
+
+const queryAtualizarTarefa = async (camposAtualizados, id, user_id) => {
+    return await knex('tarefas')
+    .where({id, user_id})
+    .update(camposAtualizados)
+    .returning('*')
+}
+
+const queryDeletarTarefa = async (id, user_id) => {
+    return await knex('tarefas')
+    .where({id, user_id})
     .delete()
 }
 

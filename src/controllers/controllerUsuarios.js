@@ -36,6 +36,7 @@ const cadastrarUsuario = async (req, res) => {
     
         return res.status(201).json({mensagem: 'Usuário cadastrado com sucesso'})       
     } catch (error) {
+        console.error("Ocorreu um erro ao cadastrar a tarefa:", error)
         return res.status(500).json({ mensagem: `Erro ao cadastrar usuário: ${error.message}`})
     }
 }
@@ -44,6 +45,7 @@ const obterUsuario = (req,res) => {
     try {
         return res.status(200).json(req.usuario)
     } catch (error) {
+        console.error("Ocorreu um erro ao obter o usuário:", error)
         return res.status(500).json({ mensagem: `Erro ao obter usuário: ${error.message}`})
     }
 }
@@ -83,15 +85,23 @@ const atualizarUsuario = async (req, res) => {
 
         return res.status(200).json({mensagem: 'Usuario atualizado com sucesso'})
    } catch (error) {
-    return res.status(500).json({ mensagem: `Erro ao atualizar o usuário: ${error.message}`})
+        console.error("Ocorreu um erro ao atualizar o usuário:", error)
+        return res.status(500).json({ mensagem: `Erro ao atualizar o usuário: ${error.message}`})
    }
 }
 
 const deletarUsuario = async (req,res) => {
     try {
         const {id} = req.usuario
+
+        if (!id) {
+            return res.status(400).json({mensagem: "Erro ao obter o id do usuário"})
+        }
+
+        await queryDeletarUsuario(id)
         return res.status(200).json({mensagem:" Usuário deletado com sucesso. "})
     } catch (error) {
+        console.error("Ocorreu um erro ao deletar o usuário:", error)
         return res.status(500).json({ mensagem: `Erro ao deletar o usuário: ${error.message}`})
     }
 }
@@ -102,6 +112,7 @@ const exibirUsuarios = async (req,res) => {
 
         return res.status(200).json(usuarios)
     } catch (error) {
+        console.error("Ocorreu um erro ao exibir usuários:", error)
         return res.status(500).json({ mensagem: `Erro ao deletar o usuário: ${error.message}`})
     }
 }

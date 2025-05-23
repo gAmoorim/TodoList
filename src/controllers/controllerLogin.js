@@ -14,7 +14,7 @@ const login = async (req,res) => {
         const usuario = await queryBuscarUsuarioPeloEmail(email)
 
         if (!usuario) {
-            return res.status(404).json({mensagem: 'Nenhum usuario encontrado'})
+            return res.status(404).json({mensagem: 'Login ou senha incorreto'})
         }
 
         const senhacorreta = await bcrypt.compare(senha, usuario.senha)
